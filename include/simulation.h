@@ -4,9 +4,11 @@
 class PhySimulator{
 private:
     sf::RenderWindow window;
+
     PhysicsEngine engine;
+
 public:
     PhySimulator(const std::string& address);
-    
-    void run();
+    string trim(string str);
+    void run(sf::RenderWindow& window);
 };

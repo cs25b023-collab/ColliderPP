@@ -10,6 +10,8 @@ class PhysicsEngine{
 private:
   std::vector<std::unique_ptr<PhysicsObject>> objects;
   
+  static bool(*collisionTable)(PhysicsObject*, PhysicsObject*) [4][4];
+
 public:
   void addCircle(float radius, ShapeID ID,
   sf::Vector2f pos, sf::Vector2f vel, sf::Vector2f acc,
