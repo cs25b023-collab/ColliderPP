@@ -2,9 +2,8 @@
 
 
 //constructor
-PhysicsObject::PhysicsObject(ShapeID id, const sf::Vector2f& pos,const PhysicalAttributes& attr,bool isStatic)
-    : position(pos),attributes(attr),ID(id),is_static(isStatic){
-
+PhysicsObject::PhysicsObject(ShapeID id, const sf::Vector2f& pos,const PhysicalAttributes& attr)
+    : position(pos),attributes(attr),ID(id){
 }
 //destructor
 PhysicsObject::~PhysicsObject() = default;
@@ -52,12 +51,7 @@ const ShapeID PhysicsObject::getID() const{
     return ID;
 }
 
-const bool PhysicsObject::getIsStatic() const{
-    return is_static;
-}
-void PhysicsObject::setIsStatic(const bool& newIsStatic){
-    is_static=newIsStatic;
-}
+
 //attributes
 const PhysicalAttributes PhysicsObject::getAttributes() const{
     return attributes;
@@ -77,14 +71,14 @@ void PhysicsObject::update(sf::Time dt){
 
 
 void PhysicsObject::applyForce(const sf::Vector2f& force){
-    if (is_static) {
+    if (attributes.is_static) {
         return;
     }
     acceleration+=force/attributes.mass;
 }
 
 void PhysicsObject::applyImpulse(const sf::Vector2f& impulse){
-    if (is_static){
+    if (attributes.is_static){
         return;
     }
     velocity+=impulse/attributes.mass;

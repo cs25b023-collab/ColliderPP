@@ -37,9 +37,6 @@ void PhysicsEngine::addObject(std::unique_ptr<PhysicsObject> obj) {
 }
 
 void PhysicsEngine::update(sf::Time dt) {
-  for (auto& obj : objects)
-    obj->update(dt);
-  
   for (size_t i = 0; i < objects.size(); i++) {
     for (size_t j = i + 1; j < objects.size(); j++) {
       if (objects[i]->checkCollision(*objects[j])) {
@@ -47,6 +44,10 @@ void PhysicsEngine::update(sf::Time dt) {
       }
     }
   }
+  for (auto& obj : objects)
+    obj->update(dt);
+  
+
 }
 
 void PhysicsEngine::draw(sf::RenderWindow& window) {

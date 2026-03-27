@@ -5,34 +5,6 @@
 #include <algorithm>
 #include <fstream>
 #include <map>
-namespace {
-std::map<std::string, std::string> parser(const std::string& config_file_address){
-    std::map<std::string, std::string> config;
-    std::ifstream config_file(config_file_address);
-
-    std::string line;
-    size_t line_count = 0;
-    while (std::getline(config_file, line)) {
-        line_count++;
-        if (line.empty()) continue;
-
-        std::vector<std::string> tokens(3);
-        std::stringstream ss(line);
-
-        if (!(ss >> tokens[0] >> tokens[1] >> tokens[2])) {
-            std::cerr <<"Invalid config line at "<<line_count<< "\nThe error: " << line << "\n";
-            continue;
-        }
-        if (tokens[1] != ":") {
-            std::cerr << "Missing ':' in line: " << line << "\n";
-            continue;
-        }
-
-        config[tokens[0]] = tokens[2];
-    }
-    return config;
-}
-}
 
 PhySimulator::PhySimulator(const std::string& config_file_address){
     load_config(config_file_address);
@@ -65,7 +37,28 @@ bool PhySimulator::load_window(){
 
 }
 bool PhySimulator::load_config(const std::string& config_file_address){
-    config = parser(config_file_address);
+    std::ifstream config_file(config_file_address);
+
+    std::string line;
+    size_t line_count = 0;
+    while (std::getline(config_file, line)) {
+        line_count++;
+        if (line.empty()) continue;
+
+        std::vector<std::string> tokens(3);
+        std::stringstream ss(line);
+
+        if (!(ss >> tokens[0] >> tokens[1] >> tokens[2])) {
+            std::cerr <<"Invalid config line at "<<line_count<< "\nThe error: " << line << "\n";
+            continue;
+        }
+        if (tokens[1] != ":") {
+            std::cerr << "Missing ':' in line: " << line << "\n";
+            continue;
+        }
+
+        config[tokens[0]] = tokens[2];
+    }
     return true;
 }
 
@@ -105,10 +98,11 @@ void PhySimulator::run(){
     clock.restart();
     while (window.isOpen()){
 
-        start_frame();
+        
         while (window.pollEvent(event)){
             process_event();
         }
+        start_frame();
         update();
         render();
     }

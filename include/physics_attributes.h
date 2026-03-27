@@ -7,6 +7,9 @@ struct PhysicalAttributes {
     float restitution;
     sf::Color color;
 
+    bool is_static = true;
+    bool is_real = true;
+
     static const PhysicalAttributes DEFAULT_PHYSICS_ATTRIBUTES;
 };
 

@@ -13,13 +13,12 @@ private:
     float angularAcceleration = 0.0f;
 
     ShapeID ID;
-    bool is_static;
     
     PhysicalAttributes attributes;
 
 public:
     //Constructor
-    PhysicsObject(ShapeID id, const sf::Vector2f& pos, const PhysicalAttributes& attr = PhysicalAttributes::DEFAULT_PHYSICS_ATTRIBUTES,bool isStatic = false);
+    PhysicsObject(ShapeID id, const sf::Vector2f& pos, const PhysicalAttributes& attr = PhysicalAttributes::DEFAULT_PHYSICS_ATTRIBUTES);
 
     virtual ~PhysicsObject();
 
@@ -38,8 +37,6 @@ public:
 
     const ShapeID getID() const;
 
-    const bool getIsStatic() const;
-    void setIsStatic(const bool& newIsStatic);
     const PhysicalAttributes getAttributes() const;
     void setAttributes(const PhysicalAttributes& newAttributes);
 
