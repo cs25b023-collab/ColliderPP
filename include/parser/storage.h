@@ -68,7 +68,39 @@ public:
         clean_data();
     }
 
+    JObject(const JObject& other){
+        deep_copy_data(other);
+    }JObject& operator=(const JObject& other){
+        if (this != &other) {
+            clean_data();
+            deep_copy_data(other);
+        }
+        return *this;        
+    }
+    JObject(JObject&& other) noexcept {
+        type = other.type;
+        data = other.data;
 
+        if (other.type == "string") other.data.svalue = nullptr;
+        else if (other.type == "list") other.data.lvalues = nullptr;
+        else if (other.type == "dict") other.data.mvalues = nullptr;
+
+        other.type = "";
+    }JObject& operator=(JObject&& other) noexcept {
+        if (this != &other) {
+            clean_data();
+            type = other.type;
+            data = other.data;
+            
+            if (other.type == "string") other.data.svalue = nullptr;
+            else if (other.type == "list") other.data.lvalues = nullptr;
+            else if (other.type == "dict") other.data.mvalues = nullptr;
+
+            other.type = "";
+
+        }
+        return *this;
+    }
 
 
     operator int() const {
