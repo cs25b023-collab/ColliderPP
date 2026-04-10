@@ -8,7 +8,7 @@
 
 PhySimulator::PhySimulator(const std::string& config_file_address){
     JObject config_json(config_file_address.c_str());
-    window.create(sf::VideoMode(int( config_json["screen_width"]),int(config_json["screen_height"])), std::string(config_json["Name"]));
+    window.create(sf::VideoMode(int(config_json["screen_width"]),int(config_json["screen_height"])), std::string(config_json["Name"]));
 
 }
 
@@ -61,4 +61,3 @@ void PhySimulator::run(){
 void PhySimulator::update(){
     engine.update(dt);
 }
-
