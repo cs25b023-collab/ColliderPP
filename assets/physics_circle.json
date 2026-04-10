@@ -1,8 +1,44 @@
-{
-    "Circle":{
-        "radius":5
+[
+    {
+        "Circle":{
+            "radius":100.0
+        },
+        "PhysicsObject": {
+            "position" : [400.0 , 400.0],
+            "velocity" : [20.0,20.0],
+            "acceleration" : [0.0,0.0],
+            "angle" : 20.0,
+            "angularVelocity" : 2.0,
+            "angularAcceleration" : 0.0,
+            "PhysicalAttributes": {
+                "mass" : 0.5,
+                "angularMass" : 0.0,
+                "restitution" : 0.2,
+                "color" : "blue",
+                "is_static" : true,
+                "is_real" : true
+            }
+        }
     },
-    "PhysicsObject": {
-        "position":[25, 25]
+    {
+        "Circle":{
+            "radius":100.0
+        },
+        "PhysicsObject": {
+            "position" : [200.0 , 400.0],
+            "velocity" : [40.0,-20.0],
+            "acceleration" : [0.0,0.0],
+            "angle" : 20.0,
+            "angularVelocity" : 2.0,
+            "angularAcceleration" : 0.0,
+            "PhysicalAttributes": {
+                "mass" : 0.5,
+                "angularMass" : 0.0,
+                "restitution" : 0.2,
+                "color" : "green",
+                "is_static" : true,
+                "is_real" : true
+            }
+        }
     }
-}
+]

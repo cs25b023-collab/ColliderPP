@@ -11,7 +11,7 @@ private:
 
     void sync();
 public:
-    Circle(float r, sf::Vector2f position);
+    //Circle(float r, sf::Vector2f position);
     Circle(const JObject &obj_circle);
 
     void update(sf::Time deltaTime) override;

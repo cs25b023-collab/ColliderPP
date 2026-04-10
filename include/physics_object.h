@@ -18,8 +18,8 @@ private:
 
 public:
     //Constructor
-    PhysicsObject(ShapeID id, const JObject& config_json, const sf::Vector2f& pos, const PhysicalAttributes& attr = PhysicalAttributes::DEFAULT_PHYSICS_ATTRIBUTE());
-
+    PhysicsObject(ShapeID id, const JObject& config_json);
+    PhysicsObject(ShapeID id, const sf::Vector2f& pos, const PhysicalAttributes& attr= PhysicalAttributes::DEFAULT_PHYSICS_ATTRIBUTE());
     
 
 
@@ -52,9 +52,6 @@ public:
     void applyImpulse(const sf::Vector2f& impulse);
 
     virtual const sf::FloatRect getGlobalBounds() const =0;
-
-    virtual bool checkCollision(PhysicsObject& other)=0;
-    virtual void resolveCollision(PhysicsObject& other) =0;
 
     virtual void update(sf::Time dt);
     virtual void draw(sf::RenderWindow& window) = 0;

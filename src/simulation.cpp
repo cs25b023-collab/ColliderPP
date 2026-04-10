@@ -6,10 +6,17 @@
 #include <fstream>
 #include <map>
 
+#include "physics_circle.h"
+#include "mjson/json.h"
+
 PhySimulator::PhySimulator(const std::string& config_file_address){
     JObject config_json(config_file_address.c_str());
     window.create(sf::VideoMode(int(config_json["screen_width"]),int(config_json["screen_height"])), std::string(config_json["Name"]));
 
+    JObject circle_data("assets/physics_circle.json");
+    for(const JObject& circle:std::vector<JObject>(circle_data)){
+        engine.addObject(std::make_unique<Circle>(circle));
+    }
 }
 
 void PhySimulator::process_event(){

@@ -2,9 +2,27 @@
 #include "lexer.h"
 #include "parser.h"
 
+const char* jtype_to_string(JType type) {
+    switch (type) {
+        case JType::Null:  return "Null";
+        case JType::Bool:  return "Bool";
+        case JType::Int:   return "Int";
+        case JType::Float: return "Float";
+        case JType::String:return "String";
+        case JType::List:  return "List";
+        case JType::Dict:  return "Dict";
+        default:           return "Unknown";
+    }
+}
+
 void JObject::check_error(JType target) const {
-    if (target != type)
-        std::cerr << "Invalid type conversion of JObject"<< "\n";
+    if (target != type) {
+        std::cerr << "JObject type error: requested ["
+                  << jtype_to_string(target)
+                  << "] but actual is ["
+                  << jtype_to_string(type)
+                  << "]\n";
+    }
 }
 
 void JObject::clean_data() {

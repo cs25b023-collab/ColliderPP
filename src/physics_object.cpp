@@ -1,8 +1,13 @@
 #include "physics_object.h"
 
+PhysicsObject::PhysicsObject(ShapeID id, const sf::Vector2f& pos, const PhysicalAttributes& attr):
+    ID(id),position(pos),attributes(attr){
+
+}
+
 
 //constructor
-PhysicsObject::PhysicsObject(ShapeID id, const JObject& config_json):ID(id){
+PhysicsObject::PhysicsObject(ShapeID id, const JObject& config_json):ID(id),attributes(PhysicalAttributes::FROM_JSON(config_json["PhysicalAttributes"])){
     
     position            = sf::Vector2f(float(config_json["position"][0]), float(config_json["position"][1]));
     velocity            = sf::Vector2f(float(config_json["velocity"][0]), float(config_json["velocity"][1]));
